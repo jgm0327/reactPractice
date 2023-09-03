@@ -1,11 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './ExpenseForm.css'
 import { MdSend } from 'react-icons/md'
 
-export class ExpenseForm extends Component {
-  render() {
+const ExpenseForm = ({handleCharge, charge, handleAmount, amount, handleSubmit, edit}) =>{
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <div className='form-center'>
                 <div className='form-group'>
                     <label htmlFor='expense'>지출 항목</label>
@@ -13,27 +12,30 @@ export class ExpenseForm extends Component {
                     className='form-control'
                     id='charge'
                     name='charge'
-                    placeholder='예) 렌트비'>
+                    value={charge}
+                    placeholder='예) 렌트비'
+                    onChange = {handleCharge}>
                     </input>
                 </div>
                 <div className='form-group'>
                     <label htmlFor='amount'>비용</label>
                     <input type="number"
                     className='form-control'
+                    value={amount}
                     id='amount'
                     name='amount'
-                    placeholder='예) 100'>
+                    placeholder='예) 100'
+                    onChange={handleAmount}>
                     </input>
                 </div>
             </div>
 
             <button type='submit' className='btn'>
-                제출
+                {edit ? "수정" : "제출"}
                 <MdSend/>
             </button>
         </form>
     )
-  }
 }
 
 export default ExpenseForm
